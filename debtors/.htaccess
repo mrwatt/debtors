@@ -1,0 +1,8 @@
+RewriteEngine On
+ RewriteRule ^$ /subdom/daty/www/ [L]
+ RewriteCond %{REQUEST_FILENAME} !-f
+ RewriteCond %{REQUEST_FILENAME} !-d
+ RewriteCond %{REQUEST_URI} !^/www/
+ RewriteRule ^(.*)$ /subdom/daty/www/$1
+ RewriteCond %{SCRIPT_FILENAME} -d
+ RewriteRule ^daty.tulix.cz/(.*[^/])$ http://daty.tulix.cz/$1/ [R=301]

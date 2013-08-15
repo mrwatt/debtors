@@ -1,0 +1,29 @@
+{block content}
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Okres</th>
+			<th>IČ</th>
+			<th>Datum narození</th>
+			<th>Jméno</th>
+			<th>Adresa</th>
+			<th style="width:100px">Dlužné celkem</th>
+		</tr>
+		<tr n:foreach="$rows as $row">
+			<td>{$row['id']}</td>
+			<td>{$row['region']}</td>
+			<td>{$row['org_id']}</td>
+			<td n:if="$row['birthday'] ==0" style="text-align:center;color:#ccc">---</td>
+			<td n:if="$row['birthday'] > 0">{$row['birthday']|date:'j. n. Y'}</td>
+			<td>{$row['name']}</td>
+			<td>{$row['address']}</td>
+			<td>{$row['debt_total']|number:0:',':' '} Kč</td>
+		</tr>
+	</table>
+
+	<ul class="paginator">
+		<li n:for="$page=1;$page<ceil($paginator->getItemCount()/$paginator->getItemsPerPage());$page++" n:class="($page == $paginator->page) ? 'active'">
+			<a href="{link Homepage:default $page}">{$page}</a>
+		</li>
+	</ul>
+{/block}
